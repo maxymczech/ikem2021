@@ -1,0 +1,22 @@
+{
+  "name": "ikem2021",
+  "version": "1.0.0",
+  "description": "Hospital navigation for IKEM in Prague",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxymczech/ikem2021.git"
+  },
+  "author": "Maksym Shcherban, Olena Demchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxymczech/ikem2021/issues"
+  },
+  "homepage": "https://github.com/maxymczech/ikem2021#readme",
+  "dependencies": {
+    "firebase": "^9.5.0"
+  }
+}
