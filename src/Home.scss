@@ -1,0 +1,21 @@
+@import './sass/variables';
+
+.home-wrap {
+  .map {
+    align-items: stretch;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+
+    & > * {
+      flex-grow: 1;
+    }
+  }
+
+  .sidebar {
+  }
+
+  @media screen and (min-width: 992px) {
+    display: flex;
+  }
+}

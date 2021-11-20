@@ -7,33 +7,38 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
+    historyApiFallback: true,
     port: 3000
   },
   entry: ['regenerator-runtime/runtime.js', './src/index.js'],
   mode: 'development',
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        options: { presets: ['@babel/env'] }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', {
-          loader: 'css-loader',
-          options: {
-            url: false
-          }
-        }]
-      }
-    ]
+    rules: [{
+      test: /\.(js|jsx)$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel-loader',
+      options: { presets: ['@babel/env'] }
+    }, {
+      test: /\.css$/,
+      use: ['style-loader', {
+        loader: 'css-loader',
+        options: {
+          url: false
+        }
+      }]
+    }, {
+      test: /\.s[ac]ss$/i,
+      use: [
+        "style-loader",
+        "css-loader",
+        "sass-loader"
+      ]
+    }]
   },
   optimization: {
     minimizer: [new TerserPlugin({
-      extractComments: false,
-    })],
+      extractComments: false
+    })]
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
