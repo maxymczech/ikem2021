@@ -1,9 +1,11 @@
 {
-  "name": "ikem2021",
+  "name": "IKEM Navigation",
   "version": "1.0.0",
   "description": "Hospital navigation for IKEM in Prague",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,12 +13,30 @@
     "url": "git+https://github.com/maxymczech/ikem2021.git"
   },
   "author": "Maksym Shcherban, Olena Demchenko",
-  "license": "ISC",
+  "license": "GNU-GPL-3.0",
   "bugs": {
     "url": "https://github.com/maxymczech/ikem2021/issues"
   },
   "homepage": "https://github.com/maxymczech/ikem2021#readme",
   "dependencies": {
-    "firebase": "^9.5.0"
+    "firebase": "^9.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^10.0.0",
+    "css-loader": "^6.5.1",
+    "dotenv": "^10.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
   }
 }
