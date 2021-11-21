@@ -1,5 +1,5 @@
 {
-  "name": "IKEM Navigation",
+  "name": "ikem-navigation",
   "version": "1.0.0",
   "description": "Hospital navigation for IKEM in Prague",
   "main": "index.js",
