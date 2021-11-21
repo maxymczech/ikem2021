@@ -17,15 +17,45 @@ export default function() {
   return (
     <div className="home-wrap">
       <div className="sidebar">
-        Sidebar Content
+       
 
-        <div>
-          <button onClick={() => setFloor(1)}>Floor 1</button>
-          <button onClick={() => setFloor(2)}>Floor 2</button>
-          <button onClick={() => setFloor(3)}>Floor 3</button>
-          <button onClick={() => setFloor(4)}>Floor 4</button>
-          <button onClick={() => setFloor(5)}>Floor 5</button>
+        {/* EDIT HERE */}
+        {/* <img src="/images/test.png" /> */}
+        <div className="header">
+
+          <select name="lang" className="lang">
+            <option value="English">EN</option>
+            <option value="Ceský jazyk">CZ</option>
+          </select>
+
+          <img src="/images/icons/ikem.png" className="logo"/>
+          <img src="/images/icons/pin_2.png" className="ikemka"/>
         </div>
+
+        <div className="search-form">
+          <form>
+            <div className="form-line">
+              <label for="from_p">From:</label>
+              <input type="text" id="from_p" placeholder="From" required="required" />
+            </div>
+            <div className="form-line">
+              <label for="to_p">To:</label>
+              <input type="text" id="to_p" placeholder="To" required="required" />
+            </div>
+            <div className="for-buttons">
+              <div className="button-box">
+                <button className="voiced">Voice directions</button>
+              </div>
+              <div className="button-box">
+                <button className="for-wheelchair">Wheelchair accessible</button>
+              </div>
+            </div>
+            
+            <input type="submit" value="Search" />
+          </form>
+        </div>
+        <img src="/images/buildings.png" className="whole-building"/>
+
       </div>
       <div className="map">
         <Map

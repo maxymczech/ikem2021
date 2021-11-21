@@ -3,22 +3,154 @@
 .home-wrap {
   .map {
     align-items: stretch;
-    display: flex;
+    display: none;
     height: 100vh;
     width: 100%;
 
     & > * {
       flex-grow: 1;
     }
+
+    @media screen and (min-width: 992px) {
+      display: flex;
+    }
   }
 
   .sidebar {
+    font-size: 20px;
+    padding: 15px;
     @media screen and (min-width: 992px) {
       background-color: #fff;
       box-shadow: 0 0 3px rgb(0 0 0 / 40%);
-      min-width: 400px;
+      min-width: 440px;
       position: relative;
       z-index: 1000;
+      
+    }
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-right: 20px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 500;
+      justify-content: center;
+      margin-bottom: 30px;
+      position: relative;
+      flex-direction: row;
+      @media screen and (min-width: 992px) {
+        margin-top: 20px;
+      }
+      .lang {
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        font-size: 15px;
+        padding: 3px;
+        background-color: transparent;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+      }
+    }
+    .ikemka {
+      width: 50px;
+      height: auto;
+      align-self: flex-end;
+    }
+    .form-line {
+      margin-bottom: 20px;
+      display: flex;
+    }
+    label {
+      display: inline-block;
+      width: 80px;
+      padding: 10px;
+    }
+    input {
+      border: none;
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid lightgrey;
+      font-size: 15px;
+    }
+    input[type=submit] {
+      border: none;
+      background-color: transparent;
+      border-radius: 6px;
+      border: 1px solid #e2001a;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+      font-size: 18px;
+      padding: 15px;
+      max-width: 400px;
+      &:hover {
+        background-color: #e2001a;
+        color: white;
+      }
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      border-radius: 6px;
+      border: 1px solid #e2001a;
+      width: 100%;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+      font-size: 18px;
+      padding: 15px;
+      max-width: 400px;
+
+      &:hover {
+        background-color: #e2001a;
+        color: white;
+      }
+    }
+    .button-box button {
+      background-position: 15% 50%;
+      background-size: 22px auto;
+      background-repeat: no-repeat;
+      width: 100%;
+      &.voiced {
+        background-image: url(../public/images/icons/blind.png);
+        background-position: 21% 50%;
+        @media (min-width:800px) and (max-width:991px) {
+          margin-right: 20px;
+        }
+        &:hover {
+          background-image: url(../public/images/icons/blind_white.png);
+        }
+      }
+      &.for-wheelchair {
+        background-image: url(../public/images/icons/handicap.png);
+        &:hover {
+          background-image: url(../public/images/icons/handicap_white.png);
+        }
+      }
+
+      @media (min-width:800px) and (max-width:991px) {
+        min-width: 400px;
+      }
+    }
+    .for-buttons {
+      @media (min-width:880px) and (max-width:991px) {
+        display: flex;
+      }
+    }
+    .whole-building {
+      height: 300px;
+      width: auto;
+      padding-top: 20px;
+      @media (min-width: 992px) {
+        height: 370px;
+        width: auto;
+        padding-top: 40px;
+      }
     }
   }
 
