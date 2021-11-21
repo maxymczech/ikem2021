@@ -25,7 +25,13 @@ export default function({
 
     map.setMaxBounds(bounds);
     map.setView([0, config.floorImageSize.width / 2], -1);
-    L.imageOverlay('/images/floors/floor-1.png', bounds).addTo(map);
+
+    // Add floor images as layers
+    for (let i = 1; i < 5; i++) {
+      L.imageOverlay(`/images/floors/floor-${i}.png`, bounds, { layerName: `floor-${i}` }).addTo(map);
+    }
+
+    // Forward leaflet map reference outside of component
     onMapInit?.(map);
   }, []);
   
