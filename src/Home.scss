@@ -23,7 +23,7 @@
     @media screen and (min-width: $desktop-width) {
       background-color: #fff;
       box-shadow: 0 0 3px rgb(0 0 0 / 40%);
-      min-width: 440px;
+      min-width: 430px;
       position: relative;
       z-index: 1000;
     }
@@ -93,7 +93,7 @@
       cursor: pointer;
       font-size: 18px;
       margin-bottom: 20px;
-      max-width: 420px;
+      max-width: 400px;
       padding: 15px;
       transition: all 0.3s;
       width: 100%;
@@ -150,16 +150,38 @@
     }
 
     .image-wrap {
+      position: relative;
       text-align: center;
 
+      a {
+        background-color: #fff;
+        height: 16px;
+        left: 212px;
+        position: absolute;
+        opacity: 0;
+        transform-origin: 0 100%;
+        transform: skewY(-30deg);
+        transition: all .3s;
+        width: 188px;
+
+        &.floor-1 { bottom: 42px; }
+        &.floor-2 { bottom: 58px; }
+        &.floor-3 { bottom: 74px; }
+        &.floor-4 { bottom: 90px; }
+        &.floor-5 { bottom: 106px; }
+
+        &:hover {
+          opacity: 0.4;
+        }
+      }
+
       .whole-building {
+        display: block;
         max-width: 400px;
         padding-top: 20px;
         width: 100%;
 
         @media (min-width: $desktop-width) {
-          height: 370px;
-          padding-top: 40px;
           width: auto;
         }
       }

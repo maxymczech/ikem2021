@@ -10,7 +10,8 @@ export default function() {
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [wheelchairEnabled, setWheelchairEnabled] = useState(true);
 
-  const setFloor = useCallback((n) => {
+  const setFloor = useCallback((e, n) => {
+    e.preventDefault();
     const targetLayerName = `floor-${n}`;
     map?.eachLayer(layer => {
       if (layer?.options?.layerName === targetLayerName) {
@@ -90,6 +91,11 @@ export default function() {
         </div>
         <div className="image-wrap">
           <img src="/images/buildings.png" className="whole-building"/>
+          <a className="floor-1" href="/" onClick={e => setFloor(e, 1)}></a>
+          <a className="floor-2" href="/" onClick={e => setFloor(e, 2)}></a>
+          <a className="floor-3" href="/" onClick={e => setFloor(e, 3)}></a>
+          <a className="floor-4" href="/" onClick={e => setFloor(e, 4)}></a>
+          <a className="floor-5" href="/" onClick={e => setFloor(e, 5)}></a>
         </div>
       </div>
       <div className="map">
