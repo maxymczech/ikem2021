@@ -37,6 +37,7 @@ export default function() {
       this._div = L.DomUtil.create('div', 'leaflet-bar floor-control');
       this._div.addEventListener('click', e => {
         e.preventDefault();
+        e.stopPropagation();
 
         const linkElement = e.target;
         const floor = Number(linkElement?.getAttribute?.('data-floor'));
