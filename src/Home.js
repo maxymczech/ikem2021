@@ -4,6 +4,11 @@ import Map from './components/Map';
 
 export default function() {
   const [map, setMap] = useState(null);
+  const [lang, setLang] = useState('en');
+  const [locationFrom, setLocationFrom] = useState('');
+  const [locationTo, setLocationTo] = useState('');
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [wheelchairEnabled, setWheelchairEnabled] = useState(true);
 
   const setFloor = useCallback((n) => {
     const targetLayerName = `floor-${n}`;
@@ -18,7 +23,10 @@ export default function() {
     <div className="home-wrap">
       <div className="sidebar">
         <div className="header">
-          <select name="lang" className="lang">
+          <select
+            className="lang"
+            onChange={e => setLang(e.target.value)}
+          >
             <option value="en">EN</option>
             <option value="cz">CZ</option>
           </select>
@@ -29,23 +37,54 @@ export default function() {
         <div className="search-form">
           <form>
             <div className="form-line">
-              <label htmlFor="from_p">From:</label>
-              <input type="text" id="from_p" placeholder="From" required="required" />
+              <label htmlFor="from_p">
+                {lang === 'en' ? 'From' : 'Odkud'}:
+              </label>
+              <input
+                id="from_p"
+                onChange={e => setLocationFrom(e.target.value)}
+                placeholder={lang === 'en' ? 'From' : 'Odkud'}
+                type="text"
+                value={locationFrom}
+              />
             </div>
             <div className="form-line">
-              <label htmlFor="to_p">To:</label>
-              <input type="text" id="to_p" placeholder="To" required="required" />
+              <label htmlFor="to_p">
+                {lang === 'en' ? 'To' : 'Kam'}:
+              </label>
+              <input
+                id="to_p"
+                onChange={e => setLocationTo(e.target.value)}
+                placeholder={lang === 'en' ? 'To' : 'Kam'}
+                type="text"
+                value={locationTo}
+              />
             </div>
             <div className="for-buttons">
               <div className="button-box">
-                <button className="voiced">Voice directions</button>
+                <button
+                  className={'voiced ' + (voiceEnabled ? 'active' : '')}
+                  onClick={() => setVoiceEnabled(x => !x)}
+                  type="button"
+                >
+                  {lang === 'en' ? 'Voice assistant' : 'Hlasový asistent'}
+                </button>
               </div>
               <div className="button-box">
-                <button className="for-wheelchair">Wheelchair accessible</button>
+                <button
+                  className={'for-wheelchair ' + (wheelchairEnabled ? 'active' : '')}
+                  onClick={() => setWheelchairEnabled(x => !x)}
+                  type="button"
+                >
+                  {lang === 'en' ? 'Wheelchair accessible' : 'Bezbariérový přístup'}
+                </button>
               </div>
             </div>
             <div className="button-box">
-              <input type="submit" value="Search" />
+              <input
+                type="submit"
+                value={lang === 'en' ? 'Search' : 'Vyhledávat'}
+              />
             </div>
           </form>
         </div>

@@ -1,6 +1,6 @@
 import './FormModal.scss';
 import React, { useCallback, useContext, useState } from 'react';
-import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/firestore"; 
+import { addDoc, collection, deleteDoc, doc, getFirestore, serverTimestamp, updateDoc } from "firebase/firestore"; 
 import config from '../../config';
 import { createPortal } from 'react-dom';
 
@@ -10,7 +10,7 @@ export default function({
 }) {
   const [building, setBuilding] = useState(selectedNode?.building ?? config.buildings[0]);
   const [floor, setFloor] = useState(selectedNode?.floor ?? '1');
-  const [icon, setIcon] = useState(selectedNode?.icon ?? '');
+  const [icon, setIcon] = useState(selectedNode?.icon ?? 'default');
   const [isEnabled, setIsEnabled] = useState(selectedNode?.isEnabled ?? true);
   const [name_cz, setName_cz] = useState(selectedNode?.name_cz ?? '');
   const [name_en, setName_en] = useState(selectedNode?.name_en ?? '');
@@ -31,7 +31,6 @@ export default function({
     }
     setIsLoading(true);
 
-    const db = getFirestore();
     const payload = {
       building,
       floor,
@@ -47,10 +46,18 @@ export default function({
     };
 
     if (selectedNode?.id) {
+      try {
+        const ref = doc(getFirestore(), "navigationNodes", selectedNode.id);
+        await updateDoc(ref, payload);
+        onClose?.(payload);
+      } catch(error) {
+        console.log(error);
+        setIsLoading(false);
+      }
     } else {
       try {
         payload.createdAt = serverTimestamp();
-        await addDoc(collection(db, "navigationNodes"), payload);
+        await addDoc(collection(getFirestore(), "navigationNodes"), payload);
         onClose?.(payload);
       } catch (error) {
         console.log(error);
@@ -144,11 +151,24 @@ export default function({
             </div>
             <div className="form-row">
               <label htmlFor="point-icon">Icon:</label>
-              <input
+              <select
                 id="point-icon"
                 onChange={e => setIcon(e.target.value)}
-                type="text"
                 value={icon}
+              >
+                {Object.keys(config.icons).map(id => (
+                  <option
+                    key={id}
+                    value={id}
+                  >
+                    {id}
+                  </option>
+                ))}
+              </select>
+              <img
+                alt=""
+                className="icon-preview"
+                src={config.icons[icon].iconUrl}
               />
             </div>
             <div className="form-row">
@@ -198,7 +218,22 @@ export default function({
                 <span>Wheelchair access</span>
               </label>
             </div>
-            <div className="text-right">
+            <div className="buttons-wrap">
+              {selectedNode.id && (
+                <button
+                  onClick={() => {
+                    if (confirm('Do you really want to delete this node?')) {
+                      deleteDoc(doc(getFirestore(), "navigationNodes", selectedNode.id)).finally(() => {
+                        onClose?.(null);
+                      });
+                    }
+                  }}
+                  type="button"
+                >
+                  Delete
+                </button>
+              )}
+              <div className="flex-grow"></div>
               <button
                 type="submit"
               >

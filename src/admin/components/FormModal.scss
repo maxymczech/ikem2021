@@ -62,12 +62,26 @@
       text-align: left;
     }
 
+    .icon-preview {
+      margin-left: 10px;
+      max-height: 32px;
+    }
+
     input[type=text],
     select {
       border: 1px solid lightgrey;
       border-radius: 5px;
       padding: 10px 15px;
     }
+  }
+
+  .buttons-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .flex-grow {
+    flex-grow: 1;
   }
 
   .text-right {
