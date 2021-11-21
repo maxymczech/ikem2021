@@ -99,6 +99,26 @@ export default {
       iconSize: [60, 60],
       iconUrl: '/images/icons/stairs.png',
       iconAnchor: [30, 30],
+    },
+    food: {
+      iconSize: [68, 60],
+      iconUrl: '/images/icons/food.png',
+      iconAnchor: [34, 60],
+    },
+    pharm: {
+      iconSize: [71, 60],
+      iconUrl: '/images/icons/pharm.png',
+      iconAnchor: [10, 60],
+    },
+    flowers: {
+      iconSize: [65, 60],
+      iconUrl: '/images/icons/flowers.png',
+      iconAnchor: [10, 60],
+    },
+    wc: {
+      iconSize: [50, 50],
+      iconUrl: '/images/icons/wc.png',
+      iconAnchor: [25, 50],
     }
   },
 
