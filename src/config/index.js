@@ -1,6 +1,9 @@
 /* global process */
 
 export default {
+  // List of buildings
+  buildings: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+
   // Firebase config
   firebase: {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -13,7 +16,7 @@ export default {
   },
 
   // Number of floors in the building
-  floorCount: 5,
+  floorCount: 1,
 
   // Meters per pixel
   floorImageScale: 0.02,
@@ -22,5 +25,8 @@ export default {
   floorImageSize: {
     height: 4800,
     width: 7600
-  }
+  },
+  
+  // Type of map
+  nodeTypes: ['intermediate', 'destination']
 }

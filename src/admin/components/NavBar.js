@@ -23,13 +23,13 @@ export default function({ signInFunc }) {
             </button>
           </Link>
         </div>
-        <div className="nav-bar-item user-name">
+        {/* <div className="nav-bar-item user-name">
           <Link to="/admin/departments">
             <button>
               Departments
             </button>
           </Link>
-        </div>
+        </div> */}
         <div className="flex-grow"></div>
         {userDetails?.name && <div className="nav-bar-item user-name">
           {userDetails.name}

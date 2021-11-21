@@ -103,35 +103,39 @@
       }
     }
 
-    .button-box button {
-      background-position: 15% 50%;
-      background-repeat: no-repeat;
-      background-size: 22px auto;
-      width: 100%;
+    .button-box {
+      text-align: center;
 
-      &.voiced {
-        background-image: url(../public/images/icons/blind.png);
-        background-position: 21% 50%;
+      button {
+        background-position: 15% 50%;
+        background-repeat: no-repeat;
+        background-size: 22px auto;
+        width: 100%;
+
+        &.voiced {
+          background-image: url(../public/images/icons/blind.png);
+          background-position: 21% 50%;
+
+          @media (min-width:800px) and (max-width: ($desktop-width - 1)) {
+            margin-right: 20px;
+          }
+
+          &:hover {
+            background-image: url(../public/images/icons/blind_white.png);
+          }
+        }
+
+        &.for-wheelchair {
+          background-image: url(../public/images/icons/handicap.png);
+
+          &:hover {
+            background-image: url(../public/images/icons/handicap_white.png);
+          }
+        }
 
         @media (min-width:800px) and (max-width: ($desktop-width - 1)) {
-          margin-right: 20px;
+          min-width: 400px;
         }
-
-        &:hover {
-          background-image: url(../public/images/icons/blind_white.png);
-        }
-      }
-
-      &.for-wheelchair {
-        background-image: url(../public/images/icons/handicap.png);
-
-        &:hover {
-          background-image: url(../public/images/icons/handicap_white.png);
-        }
-      }
-
-      @media (min-width:800px) and (max-width: ($desktop-width - 1)) {
-        min-width: 400px;
       }
     }
 
@@ -141,15 +145,19 @@
       }
     }
 
-    .whole-building {
-      height: 300px;
-      padding-top: 20px;
-      width: auto;
+    .image-wrap {
+      text-align: center;
 
-      @media (min-width: $desktop-width) {
-        height: 370px;
-        padding-top: 40px;
-        width: auto;
+      .whole-building {
+        max-width: 400px;
+        padding-top: 20px;
+        width: 100%;
+
+        @media (min-width: $desktop-width) {
+          height: 370px;
+          padding-top: 40px;
+          width: auto;
+        }
       }
     }
   }

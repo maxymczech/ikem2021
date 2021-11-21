@@ -1,5 +1,6 @@
 import './MapEditor.scss';
 import React, { useCallback, useEffect, useState } from 'react';
+import FormModal from '../components/FormModal';
 import L from 'leaflet';
 import MapComponent from '../../components/Map';
 import config from '../../config';
@@ -7,6 +8,9 @@ import config from '../../config';
 export default function() {
   const [map, setMap] = useState(null);
   const [currentFloor, setCurrentFloor] = useState(1);
+
+  const [selectedNode, setSelectedNode] = useState(null);
+  const [formModalOpen, setFormModalOpen] = useState(false);
 
   useEffect(() => {
     const targetLayerName = `floor-${currentFloor}`;
@@ -64,6 +68,16 @@ export default function() {
       this._div.innerHTML = str;
     };
     floorControl.addTo(map);
+
+    // Click handler
+    map.on('click', e => {
+      setSelectedNode({
+        id: null,
+        x: e.latlng.lng,
+        y: e.latlng.lat
+      });
+      setFormModalOpen(true);
+    });
   }, [map]);
 
   return (
@@ -72,6 +86,12 @@ export default function() {
         editable={true}
         onMapInit={setMap}
       />
+      {formModalOpen && (
+        <FormModal
+          onClose={() => setFormModalOpen(false)}
+          selectedNode={selectedNode}
+        />
+      )}
     </div>
   );
 }

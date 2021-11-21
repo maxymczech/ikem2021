@@ -17,17 +17,11 @@ export default function() {
   return (
     <div className="home-wrap">
       <div className="sidebar">
-       
-
-        {/* EDIT HERE */}
-        {/* <img src="/images/test.png" /> */}
         <div className="header">
-
           <select name="lang" className="lang">
-            <option value="English">EN</option>
-            <option value="Ceský jazyk">CZ</option>
+            <option value="en">EN</option>
+            <option value="cz">CZ</option>
           </select>
-
           <img src="/images/icons/ikem.png" className="logo"/>
           <img src="/images/icons/pin_2.png" className="ikemka"/>
         </div>
@@ -50,10 +44,12 @@ export default function() {
                 <button className="for-wheelchair">Wheelchair accessible</button>
               </div>
             </div>
-            <input type="submit" value="Search" />
+            <div className="button-box">
+              <input type="submit" value="Search" />
+            </div>
           </form>
         </div>
-        <div>
+        <div className="image-wrap">
           <img src="/images/buildings.png" className="whole-building"/>
         </div>
       </div>
