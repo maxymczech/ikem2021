@@ -1,23 +1,93 @@
 import './Home.scss';
 import React, { useCallback, useState } from 'react';
+import L from 'leaflet';
 import Map from './components/Map';
+import config from './config';
 
 export default function() {
   const [map, setMap] = useState(null);
-  const [lang, setLang] = useState('en');
-  const [locationFrom, setLocationFrom] = useState('');
-  const [locationTo, setLocationTo] = useState('');
+  const [lang, setLang] = useState('cz');
+  const [locationFrom, setLocationFrom] = useState('Hlavní vchod');
+  const [locationTo, setLocationTo] = useState('Místnost D2006');
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [wheelchairEnabled, setWheelchairEnabled] = useState(true);
 
   const setFloor = useCallback((e, n) => {
-    e.preventDefault();
+    e?.preventDefault?.();
     const targetLayerName = `floor-${n}`;
     map?.eachLayer(layer => {
       if (layer?.options?.layerName === targetLayerName) {
         layer.bringToFront();
       }
     });
+  }, [map]);
+
+  const startAnimation = useCallback(e => {
+    e.preventDefault();
+
+    // Create marker
+    const marker = L.marker([856, 3636], {
+      icon: L.icon(config.icons['ikemka-1'])
+    });
+    marker.addTo(map);
+
+    // Create polyline 1
+    const polyline1 = L.polyline([
+      [856, 3636],
+      [2708, 3636],
+      [2708, 1780]
+    ], {
+      color: '#ff0000',
+    });
+
+    // Create polyline 2
+    const polyline2 = L.polyline([
+      [2708, 1780],
+      [2708, 2820]
+    ], {
+      color: '#ff0000',
+    });
+
+    let start = null;
+    let floorFlip = false;
+    const anim = (timestamp) => {
+      if (!start) {
+        start = timestamp;
+      } else {
+        const dt = timestamp - start;
+        const t1 = 4000;
+        const t2 = 8000;
+        const t3 = 10000;
+        const t4 = 13000;
+        if (dt < t1) {
+          const c = [856 + dt / t1 * (2708 - 856), 3636];
+          marker.setLatLng(c);
+          map.panTo(c);
+        } else if (dt < t2) {
+          const c = [2708, 3636 - (3636 - 1780) * (dt - t1) / (t2 - t1)];
+          marker.setLatLng(c);
+          map.panTo(c);
+        } else {
+          if (!floorFlip) {
+            floorFlip = true;
+            setFloor(null, 2);
+            polyline1.remove();
+            polyline2.addTo(map);
+          }
+          if (dt > t3 && dt < t4) {
+            const c = [2708, 1780 + (2820 - 1780) * (dt - t3) / (t4 - t3)];
+            marker.setLatLng(c);
+            map.panTo(c);
+          }
+        }
+      }
+
+      requestAnimationFrame(anim);
+    };
+
+    anim();
+    polyline1.addTo(map);
+
   }, [map]);
 
   return (
@@ -36,7 +106,7 @@ export default function() {
         </div>
 
         <div className="search-form">
-          <form>
+          <form onSubmit={startAnimation}>
             <div className="form-line">
               <label htmlFor="from_p">
                 {lang === 'en' ? 'From' : 'Odkud'}:

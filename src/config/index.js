@@ -16,7 +16,7 @@ export default {
   },
 
   // Number of floors in the building
-  floorCount: 5,
+  floorCount: 2,
 
   // Meters per pixel
   // 470 px mapped to 9.45 meters on the floor plan
