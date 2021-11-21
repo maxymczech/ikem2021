@@ -54,8 +54,9 @@ export default function() {
             <input type="submit" value="Search" />
           </form>
         </div>
-        <img src="/images/buildings.png" className="whole-building"/>
-
+        <div>
+          <img src="/images/buildings.png" className="whole-building"/>
+        </div>
       </div>
       <div className="map">
         <Map
