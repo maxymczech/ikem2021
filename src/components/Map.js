@@ -27,7 +27,7 @@ export default function({
     map.setView([0, config.floorImageSize.width / 2], -1);
 
     // Add floor images as layers
-    for (let i = 1; i < 5; i++) {
+    for (let i = config.floorCount; i >= 1; i--) {
       L.imageOverlay(`/images/floors/floor-${i}.png`, bounds, { layerName: `floor-${i}` }).addTo(map);
     }
 

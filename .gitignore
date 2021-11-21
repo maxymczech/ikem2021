@@ -106,3 +106,4 @@ dist
 # Project files
 .env
 dist
+.firebase

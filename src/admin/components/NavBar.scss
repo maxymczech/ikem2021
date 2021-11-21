@@ -1,0 +1,40 @@
+@import '../../sass/variables';
+
+.nav-bar {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  left: 0;
+  padding: 10px 15px;
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  top: 0;
+  background-color: $color-main;
+  color: white;
+
+  button {
+    background-color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 6px;
+    font-size: 15px;
+    min-width: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-bar-item {
+    margin-right: 30px;
+    position: relative;
+  }
+
+  .flex-grow {
+    flex-grow: 1;
+  }
+}
+
+.nav-bar-instead {
+  flex-shrink: 0;
+  height: 60px;
+}

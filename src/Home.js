@@ -35,11 +35,11 @@ export default function() {
         <div className="search-form">
           <form>
             <div className="form-line">
-              <label for="from_p">From:</label>
+              <label htmlFor="from_p">From:</label>
               <input type="text" id="from_p" placeholder="From" required="required" />
             </div>
             <div className="form-line">
-              <label for="to_p">To:</label>
+              <label htmlFor="to_p">To:</label>
               <input type="text" id="to_p" placeholder="To" required="required" />
             </div>
             <div className="for-buttons">
@@ -50,7 +50,6 @@ export default function() {
                 <button className="for-wheelchair">Wheelchair accessible</button>
               </div>
             </div>
-            
             <input type="submit" value="Search" />
           </form>
         </div>
